@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', [PostController::class, 'index'])->middleware('auth')->name('posts.index');
+Route::get('/collection', [PostController::class, 'testCollection'])->middleware('auth')->name('posts.collection');
 Route::post('/post/store', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
 
 
