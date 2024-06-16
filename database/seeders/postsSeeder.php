@@ -14,10 +14,6 @@ class postsSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i = 0; $i < 10; $i++) {
-            Post::create([
-                'post' => 'Post ' . $i,
-            ]);
-        }
+        Post::factory(100000)->create();
     }
 }
