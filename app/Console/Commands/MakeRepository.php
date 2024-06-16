@@ -6,34 +6,35 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
 
-class MakeService extends Command
+class MakeRepository extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:service {path}';
+    protected $signature = 'make:repository {path}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a service class at the specified path';
+    protected $description = 'Create a repository class at the specified path';
+
 
     /**
-     * make a service class at the specified path
+     * Execute the console command.
      */
     public function handle()
     {
         // Get the path argument
         $path = $this->argument('path');
 
-        // Base Services directory
-        $baseDirectory = app_path('Services');
+        // Base Repositories directory
+        $baseDirectory = app_path('Repositories');
 
-        // Full path including the Services directory
+        // Full path including the Repositories directory
         $fullPath = $baseDirectory . '/' . str_replace('\\', '/', $path) . '.php';
 
         // Extract the directory from the full path
@@ -50,13 +51,13 @@ class MakeService extends Command
         // Create the file if it doesn't exist
         if (!File::exists($fullPath)) {
             $className = basename($path);
-            $namespace = 'App\\Services' . '\\' . str_replace('/', '\\', dirname($path));
+            $namespace = 'App\\Repositories' . '\\' . str_replace('/', '\\', dirname($path));
             $namespace = rtrim($namespace, '\\');
 
-            File::put($fullPath, "<?php\n\nnamespace $namespace;\n\nclass $className\n{\n    // Service methods\n}\n");
-            $this->info("Service created at: $fullPath");
+            File::put($fullPath, "<?php\n\nnamespace $namespace;\n\nclass $className\n{\n    // Repository methods\n}\n");
+            $this->info("Repository created at: $fullPath");
         } else {
-            $this->error("Service already exists at: $fullPath");
+            $this->error("Repository already exists at: $fullPath");
         }
     }
 }
