@@ -69,7 +69,7 @@ class MakeRepository extends Command
         // Check if the directory already exists
         if (!File::isDirectory($directory)) {
             // Create the directory with read, write, execute permissions for owner and group
-            File::makeDirectory($directory, 0755, true);
+            File::makeDirectory($directory, 0777, true);
             $this->info("Directory created at: $directory");
         } else {
             $this->info("Directory already exists at: $directory");
