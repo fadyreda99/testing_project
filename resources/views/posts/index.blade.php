@@ -1,3 +1,8 @@
+<x-page-title>Posts</x-page-title>
+<x-page-title>Posts</x-page-title>
+
+<x-dynamic-page-title text="Posts"></x-dynamic-page-title>
+
 <table>
     <thead>
         <tr>
