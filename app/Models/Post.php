@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+    //test
     protected $fillable = ['post', 'user_id'];
 
     public function user()
