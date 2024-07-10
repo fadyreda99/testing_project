@@ -21,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        return view('front.auth.register');
+        // return view('auth.register');
     }
 
     /**
@@ -47,7 +48,8 @@ class RegisteredUserController extends Controller
         RegisterEvent::dispatch($user);
 
         Auth::login($user);
+        return to_route('front.home');
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
     }
 }
