@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-        RegisterEvent::dispatch($user);
+//        RegisterEvent::dispatch($user);
 
         Auth::login($user);
         return to_route('front.home');
