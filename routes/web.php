@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
@@ -22,6 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//front
 Route::prefix('front')->name('front.')->group(function () {
     Route::get('/', FrontHomeController::class)->middleware('auth')->name('home');
     Route::view('/login', 'front.auth.login')->name('login');
@@ -56,3 +58,12 @@ Route::prefix('front')->name('front.')->group(function () {
 
 
 require __DIR__ . '/auth.php';
+
+//admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', AdminHomeController::class)->middleware('admin')->name('home');
+//    Route::view('/adlogin', 'admin.auth.login')->name('login');
+    Route::view('/login', 'admin.auth.login')->name('login');
+    Route::view('/register', 'admin.auth.register')->name('register');
+    Route::view('/forget-password', 'admin.auth.forget-password')->name('forget-password');
+});
