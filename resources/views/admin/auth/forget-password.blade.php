@@ -25,7 +25,7 @@
                         <x-auth-session-status class="mb-4" :status="session('status')" />
 
                         <form id="formAuthentication" class="mb-3" method="POST"
-                            action="{{ route('password.email') }}">
+                            action="{{ route('admin.password.email') }}">
                             @csrf
 
                             <div class="mb-3">
@@ -39,7 +39,7 @@
                         </form>
 
                         <div class="text-center">
-                            <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center">
+                            <a href="{{ route('admin.login') }}" class="d-flex align-items-center justify-content-center">
                                 <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
                                 Back to login
                             </a>

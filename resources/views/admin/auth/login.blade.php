@@ -23,7 +23,7 @@
                         <!-- /Logo -->
                         <h4 class="mb-2">Welcome to admin Dashboard! 👋</h4>
 
-                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
+                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('admin.login') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -35,7 +35,7 @@
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                    <a href="{{ route('password.request') }}">
+                                    <a href="{{ route('admin.password.request') }}">
                                         <small>Forgot Password?</small>
                                     </a>
                                 </div>
@@ -63,7 +63,7 @@
 
                         <p class="text-center">
                             <span>New on our platform?</span>
-                            <a href="{{ route('register') }}">
+                            <a href="{{ route('admin.register') }}">
                                 <span>Create an account</span>
                             </a>
                         </p>

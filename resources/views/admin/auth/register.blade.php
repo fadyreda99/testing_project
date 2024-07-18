@@ -24,7 +24,7 @@
                         <h4 class="mb-2">Welcome to admin Dashboard! 👋</h4>
 
 
-                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
+                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('admin.register') }}">
                             @csrf
 
                             <div class="mb-3">
@@ -80,7 +80,7 @@
 
                         <p class="text-center">
                             <span>Already have an account?</span>
-                            <a href="{{ route('login') }}">
+                            <a href="{{ route('admin.login') }}">
                                 <span>Sign in instead</span>
                             </a>
                         </p>

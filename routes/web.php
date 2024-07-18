@@ -62,8 +62,7 @@ require __DIR__ . '/auth.php';
 //admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', AdminHomeController::class)->middleware('admin')->name('home');
-//    Route::view('/adlogin', 'admin.auth.login')->name('login');
-    Route::view('/login', 'admin.auth.login')->name('login');
-    Route::view('/register', 'admin.auth.register')->name('register');
-    Route::view('/forget-password', 'admin.auth.forget-password')->name('forget-password');
+
+    require __DIR__ . '/adminAuth.php';
+
 });
