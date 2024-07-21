@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check() && $guard == 'admin') {
-                return to_route('back.home');
+                return to_route('admin.home');
             }
             if (Auth::guard($guard)->check()) {
                 return to_route('front.home');

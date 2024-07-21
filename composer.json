@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.9",
         "mcamara/laravel-localization": "^2.0",
+        "spatie/laravel-permission": "^6.9",
         "twbs/bootstrap": "5.0.2"
     },
     "require-dev": {
