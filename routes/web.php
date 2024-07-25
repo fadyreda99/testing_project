@@ -39,6 +39,8 @@ require __DIR__ . '/auth.php';
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', AdminHomeController::class)->middleware('admin')->name('home');
     Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
+    Route::resource('admins', \App\Http\Controllers\Admin\admins\AdminController::class);
+    Route::resource('roles', \App\Http\Controllers\Admin\roles\RoleController::class);
 
     require __DIR__ . '/adminAuth.php';
 

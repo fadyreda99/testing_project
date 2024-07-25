@@ -67,7 +67,7 @@
 
         <!-- Admins -->
         <li class="menu-item @yield('admins_active')">
-            <a href="" class="menu-link">
+            <a href="{{ route('admin.admins.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Admins</div>
             </a>
@@ -75,7 +75,7 @@
 
         <!-- ROLES -->
         <li class="menu-item @yield('roles_active')">
-            <a href="" class="menu-link">
+            <a href="{{ route('admin.roles.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Roles</div>
             </a>

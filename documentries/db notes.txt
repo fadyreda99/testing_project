@@ -1,0 +1,1 @@
+DISTINCT to get the diffrent (without duplicates)
