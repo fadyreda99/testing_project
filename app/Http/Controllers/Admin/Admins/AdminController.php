@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
@@ -69,6 +70,7 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         $admin->delete();
+        Log::channel('slack')->alert('admin is deleted with id ' . $admin->id);
         return redirect()->route('admin.admins.index')->with('success', 'admin deleted successfully.');
     }
 }
