@@ -6,6 +6,7 @@ use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
 use App\Models\CK;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -48,31 +49,31 @@ Route::prefix('front')->name('front.')->group(function () {
     })->name('ck');
 
     Route::post('upload', function (Request $request) {
-         // Check if a file is present
-    if (!$request->hasFile('upload')) {
-        return response()->json(['error' => 'No file uploaded'], 400);
-    }
+        // Check if a file is present
+        if (!$request->hasFile('upload')) {
+            return response()->json(['error' => 'No file uploaded'], 400);
+        }
 
-    $file = $request->file('upload');
+        $file = $request->file('upload');
 
-    // Validate the file
-    $validation = Validator::make($request->all(), [
-        'upload' => 'required|image|mimes:jpeg,jpg,png,gif,jfif|max:2048',
-    ]);
+        // Validate the file
+        $validation = Validator::make($request->all(), [
+            'upload' => 'required|image|mimes:jpeg,jpg,png,gif,jfif|max:2048',
+        ]);
 
-    if ($validation->fails()) {
-        return response()->json(['error' => $validation->errors()->first()], 422);
-    }
+        if ($validation->fails()) {
+            return response()->json(['error' => $validation->errors()->first()], 422);
+        }
 
-    // Store the file
-    try {
-        $path = $file->store('uploads/images', 'public');
+        // Store the file
+        try {
+            $path = $file->store('uploads/images', 'public');
 
-        // Respond with the URL of the uploaded image
-        return response()->json(['url' => asset('storage/' . $path)], 200);
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Failed to upload image: ' . $e->getMessage()], 500);
-    }
+            // Respond with the URL of the uploaded image
+            return response()->json(['url' => asset('storage/' . $path)], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to upload image: ' . $e->getMessage()], 500);
+        }
     })->name('ck.image.upload');
 });
 
@@ -89,6 +90,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
     Route::resource('admins', \App\Http\Controllers\Admin\admins\AdminController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\roles\RoleController::class);
+
+    Route::get('/testing', function () {
+        User::withoutTimestamps(function () {
+            User::create([
+                'name' => 'testing',
+                'email' => 'testing@gmail.com',
+                'password' => '123456789',
+            ]);
+        });
+    });
 
     require __DIR__ . '/adminAuth.php';
 });
