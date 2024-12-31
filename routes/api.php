@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\RobinHoodController;
 use App\Http\Controllers\Api\SocialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,10 +29,14 @@ Route::group([
 ], function ($router) {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
-
-
 });
 
 
 Route::get('auth/google', [SocialController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback']);
+
+Route::get('rh-generate-keys', [RobinHoodController::class, 'generateKeyPair']);
+Route::get('rh-generate-sig', [RobinHoodController::class, 'generateSignature']);
+Route::get('rh-trading-pairs', [RobinHoodController::class, 'getTradingPairs']);
+Route::get('testGenerateSignature', [RobinHoodController::class, 'testGenerateSignature']);
+Route::get('get-accounnt', [RobinHoodController::class, 'getAccounts']);
