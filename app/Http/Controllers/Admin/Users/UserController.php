@@ -13,9 +13,9 @@ class UserController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('checkPermission:add_user')->only(['create', 'store']);
-//        $this->middleware('checkPermission:edit_user')->only(['edit', 'update']);
-//        $this->middleware('checkPermission:delete_user')->only(['destroy']);
+        //        $this->middleware('checkPermission:add_user')->only(['create', 'store']);
+        //        $this->middleware('checkPermission:edit_user')->only(['edit', 'update']);
+        //        $this->middleware('checkPermission:delete_user')->only(['destroy']);
     }
 
     public function index()
@@ -27,12 +27,12 @@ class UserController extends Controller
     public function create()
     {
         //gate
-//        Gate::forUser(Auth::guard('admin')->user())->authorize('add_user');
+        //        Gate::forUser(Auth::guard('admin')->user())->authorize('add_user');
 
         //policy
-//        if(Auth::guard('admin')->user()->cannot('add_user')){
-//            abort(403);
-//        }
+        //        if(Auth::guard('admin')->user()->cannot('add_user')){
+        //            abort(403);
+        //        }
         //this syntax available work with policy
         Gate::forUser(Auth::guard('admin')->user())->authorize('add_user');
         return view('admin.users.create');
@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-//        Gate::forUser(Auth::guard('admin')->user())->authorize('add_user');
+        //        Gate::forUser(Auth::guard('admin')->user())->authorize('add_user');
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -58,16 +58,16 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-//        Gate::forUser(Auth::guard('admin')->user())->authorize('edit_user');
+        //        Gate::forUser(Auth::guard('admin')->user())->authorize('edit_user');
         return view('admin.users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
-//        Gate::forUser(Auth::guard('admin')->user())->authorize('edit_user');
+        //        Gate::forUser(Auth::guard('admin')->user())->authorize('edit_user');
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
@@ -82,8 +82,17 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-//        Gate::forUser(Auth::guard('admin')->user())->authorize('delete_user');
+        //        Gate::forUser(Auth::guard('admin')->user())->authorize('delete_user');
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function testing()
+    {
+        User::create([
+            'name' => 'testing3',
+            'email' => 'testing4@gmail.com',
+            'password' => '123456789',
+        ]);
     }
 }

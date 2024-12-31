@@ -91,15 +91,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('admins', \App\Http\Controllers\Admin\admins\AdminController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\roles\RoleController::class);
 
-    Route::get('/testing', function () {
-        User::withoutTimestamps(function () {
-            User::create([
-                'name' => 'testing',
-                'email' => 'testing@gmail.com',
-                'password' => '123456789',
-            ]);
-        });
-    });
+    Route::get('/testing', [\App\Http\Controllers\Admin\Users\UserController::class, 'testing']);
 
     require __DIR__ . '/adminAuth.php';
 });

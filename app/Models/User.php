@@ -33,6 +33,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'social_type',
     ];
 
+    protected $attributes = [
+        'social_type'=>'testing'
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
