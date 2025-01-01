@@ -95,10 +95,15 @@ class UserController extends Controller
         //     'password' => '123456789',
         // ]);
 
-        $user = User::find(4);
-        $user->name = 'ttttt';
-        $user->save();
-        dump($user->wasChanged());
+        //    upsert
+
+        $users = [
+            ['name' => 'test1update', 'email' => 'test1@gmail.com', 'password' => '123456789000'],
+            ['name' => 'test4', 'email' => 'test4@gmail.com', 'password' => '123456789'],
+        ];
+        User::upsert($users, ['email'], ['name', 'password']);
+        //attribute internal state
+        // dump($user->wasChanged());
         // dump($user->isDirty());
         // dump($user->isClean());
     }
