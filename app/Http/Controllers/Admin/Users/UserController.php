@@ -89,10 +89,17 @@ class UserController extends Controller
 
     public function testing()
     {
-        User::create([
-            'name' => 'testing3',
-            'email' => 'testing4@gmail.com',
-            'password' => '123456789',
-        ]);
+        // User::create([
+        //     'name' => 'testing3',
+        //     'email' => 'testing4@gmail.com',
+        //     'password' => '123456789',
+        // ]);
+
+        $user = User::find(4);
+        $user->name = 'ttttt';
+        $user->save();
+        dump($user->wasChanged());
+        // dump($user->isDirty());
+        // dump($user->isClean());
     }
 }
