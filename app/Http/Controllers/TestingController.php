@@ -41,7 +41,9 @@ class TestingController extends Controller
         // });
         ////////////////////////AGREGATES///////////////////
         // sum
-        $courses = Course::sum('price');
+        // $courses = Course::sum('price');
+        // avg
+        $courses = Course::avg('price');
         dd($courses);
     }
 }
