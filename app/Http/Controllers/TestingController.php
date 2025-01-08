@@ -31,7 +31,14 @@ class TestingController extends Controller
         // $user =  User::findOr(100, function () {
         //     return "user not found";
         // });
-        $user =  User::findOrFail(100);
+        // $user =  User::findOrFail(100);
+
+        // first or && first or fail
+        $user =  User::where('id', 400)->firstOrFail();
+        // $user =  User::where('id', 4)->firstOr(function(){
+        //     return "user not found";
+        // });
+
         dump($user);
     }
 }
