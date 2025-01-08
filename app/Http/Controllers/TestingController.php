@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -34,11 +35,13 @@ class TestingController extends Controller
         // $user =  User::findOrFail(100);
 
         // first or && first or fail
-        $user =  User::where('id', 400)->firstOrFail();
+        // $user =  User::where('id', 400)->firstOrFail();
         // $user =  User::where('id', 4)->firstOr(function(){
         //     return "user not found";
         // });
-
-        dump($user);
+        ////////////////////////AGREGATES///////////////////
+        // sum
+        $courses = Course::sum('price');
+        dd($courses);
     }
 }
