@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\Courses\CoursesController;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
@@ -90,7 +91,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
     Route::resource('admins', \App\Http\Controllers\Admin\admins\AdminController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\roles\RoleController::class);
-
+    Route::prefix('courses')->name('courses.')->group(function () {
+        Route::get('/', [CoursesController::class, 'index'])->name('index');
+        Route::get('/{course:slug}', [CoursesController::class, 'show'])->name('show');
+    });
     Route::get('/testing', [\App\Http\Controllers\Admin\Users\UserController::class, 'testing']);
 
     require __DIR__ . '/adminAuth.php';
