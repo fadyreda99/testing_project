@@ -43,7 +43,10 @@ class TestingController extends Controller
         // sum
         // $courses = Course::sum('price');
         // avg
-        $courses = Course::avg('price');
+        // $courses = Course::avg('price');
+        // min and max
+        // $courses = Course::min('price');
+        $courses = Course::max('price');
         dd($courses);
     }
 }
