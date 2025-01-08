@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Courses\CoursesController;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestingController;
 use App\Http\Controllers\User\UserController;
 use App\Models\CK;
 use App\Models\User;
@@ -95,7 +96,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [CoursesController::class, 'index'])->name('index');
         Route::get('/{course:slug}', [CoursesController::class, 'show'])->name('show');
     });
-    Route::get('/testing', [\App\Http\Controllers\Admin\Users\UserController::class, 'testing']);
+    Route::get('/testing', [TestingController::class, 'testing']);
 
     require __DIR__ . '/adminAuth.php';
 });
