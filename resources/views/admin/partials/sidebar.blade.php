@@ -97,6 +97,15 @@
             </a>
         </li>
 
+          {{-- cart --}}
+          <li class="menu-item @yield('carts_active')">
+            <a href="{{ route('admin.carts.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Carts ({{ $cart ? count($cart->courses) : 0 }})
+                </div>
+            </a>
+        </li>
+
     </ul>
 </aside>
 <!-- / Menu -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminAuth;
 use App\Events\RegisterEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Cart;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -32,6 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $cart = Cart::where('session_id', session()->getId())->first();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . Admin::class],
@@ -45,7 +47,15 @@ class RegisteredUserController extends Controller
         ]);
 
 
+
         Auth::guard('admin')->login($admin);
+
+        if ($cart) {
+            $cart->update([
+                'session_id' => session()->getId(),
+                'admin_id' => auth()->guard('admin')->user()->id
+            ]);
+        }
         return to_route('admin.home');
 
         // return redirect(RouteServiceProvider::HOME);

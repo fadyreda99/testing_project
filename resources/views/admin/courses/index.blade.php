@@ -21,8 +21,14 @@
 
                             </a>
                             <p class="card-text">{{ $course->description }}</p>
-                            <p class="card-text">{{ $course->price }}</p>
-                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                            <p class="card-text">{{ $course->price() }}</p>
+                            @if ($cart && $cart->courses->contains($course))
+                                <a href="{{route('admin.carts.removeFromCart', $course)}}" class="btn btn-danger">Remove From
+                                    Cart</a>
+                            @else
+                                <a href="{{ route('admin.carts.addToCart', $course) }}" class="btn btn-primary">Add To
+                                    Cart</a>
+                            @endif
                         </div>
                     </div>
                 </div>

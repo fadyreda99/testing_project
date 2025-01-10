@@ -81,14 +81,19 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <form method="Post" action="{{ route('admin.logout') }}">
-                            @csrf
-                            <a class="dropdown-item" href="javascript:{}"
-                                onclick="this.closest('form').submit();return false;">
-                                <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Log Out</span>
-                            </a>
-                        </form>
+                        @if (auth()->guard('admin')->user())
+                            <form method="Post" action="{{ route('admin.logout') }}">
+                                @csrf
+                                <a class="dropdown-item" href="javascript:{}"
+                                    onclick="this.closest('form').submit();return false;">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">Log Out</span>
+                                </a>
+                            </form>
+                        @else
+                            <a href="{{ route('admin.login') }}">Login</a>
+                        @endif
+
                     </li>
                 </ul>
             </li>

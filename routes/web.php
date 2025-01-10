@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\Cart\CartController;
 use App\Http\Controllers\Admin\Courses\CoursesController;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Post\PostController;
@@ -95,6 +96,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('courses')->name('courses.')->group(function () {
         Route::get('/', [CoursesController::class, 'index'])->name('index');
         Route::get('/{course:slug}', [CoursesController::class, 'show'])->name('show');
+    });
+
+    Route::prefix('carts')->name('carts.')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('index');
+        Route::get('/addToCart/{course:slug}', [CartController::class, 'addToCart'])->name('addToCart');
+        Route::get('/removeFromCart/{course:slug}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+        // Route::get('/{course:slug}', [CoursesController::class, 'show'])->name('show');
     });
     Route::get('/testing', [TestingController::class, 'testing']);
 
