@@ -10,6 +10,17 @@
             </div>
         @endif
 
+        @if (request('success_message'))
+        <div class="alert alert-success">
+            {{ request('success_message') }}
+        </div>
+    @endif
+    
+    @if (request('error_message'))
+        <div class="alert alert-danger">
+            {{ request('error_message') }}
+        </div>
+    @endif
 
         <div class="row">
             @foreach ($courses as $course)
@@ -23,7 +34,8 @@
                             <p class="card-text">{{ $course->description }}</p>
                             <p class="card-text">{{ $course->price() }}</p>
                             @if ($cart && $cart->courses->contains($course))
-                                <a href="{{route('admin.carts.removeFromCart', $course)}}" class="btn btn-danger">Remove From
+                                <a href="{{ route('admin.carts.removeFromCart', $course) }}" class="btn btn-danger">Remove
+                                    From
                                     Cart</a>
                             @else
                                 <a href="{{ route('admin.carts.addToCart', $course) }}" class="btn btn-primary">Add To

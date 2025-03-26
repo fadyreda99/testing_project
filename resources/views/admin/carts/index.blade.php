@@ -37,14 +37,22 @@
 
 
             <div class="row">
-                <div class="col-sm-4 mt-3">
+                <div class="col-md-6 mt-3">
                     <div class="card">
                         <div class="card-body">
                             {{-- <a href="{{ route('admin.courses.show', $course) }}"> --}}
-                            <h5 class="card-title">TOTAL: {{ $cart->total() }}</h5>
+                            <h5 class="card-title">TOTAL: {{ $cart?->total() ?? 0.0 }}</h5>
 
 
-                            <a href="#" class="btn btn-success">CheckOut</a>
+                            <a href="{{ route('admin.checkout.checkout') }}" class="btn btn-success">CheckOut</a>
+                            <a href="{{ route('admin.checkout.enableCoupons') }}" class="btn btn-success">CheckOut
+                                Coupon</a>
+                            <a href="{{ route('admin.checkout.none-stripe') }}" class="btn btn-success">CheckOut none
+                                stripe</a>
+                            <a href="{{ route('admin.checkout.none-stripe-guest') }}" class="btn btn-success">CheckOut none
+                                stripe guest</a>
+                            <a href="{{ route('admin.direct.payment-method') }}" class="btn btn-success">CheckOut Direct
+                                Integration PaymentMethod</a>
                         </div>
                     </div>
                 </div>

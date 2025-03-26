@@ -20,6 +20,7 @@ class CartController extends Controller
     {
         $cart = Cart::firstOrCreate([
             'session_id' => session()->getId(),
+            'admin_id' => auth()->guard('admin')->user()->id ?? null,
         ]);
 
         $cart->courses()->syncWithoutDetaching($course);
@@ -35,4 +36,3 @@ class CartController extends Controller
         return back();
     }
 }
-// 

@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AutomatedController;
 use App\Http\Controllers\Admin\Cart\CartController;
+use App\Http\Controllers\Admin\Checkout\CheckOutController;
+use App\Http\Controllers\Admin\Checkout\PaymentMethodCheckoutController;
 use App\Http\Controllers\Admin\Courses\CoursesController;
+use App\Http\Controllers\Admin\TestProject;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
@@ -104,7 +108,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/removeFromCart/{course:slug}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
         // Route::get('/{course:slug}', [CoursesController::class, 'show'])->name('show');
     });
+    Route::prefix('checkout')->name('checkout.')->group(function () {
+        // stripe products
+        Route::get('/', [CheckOutController::class, 'checkout'])->name('checkout')->middleware('admin');
+        // non stripe products
+        Route::get('/none-stripe', [CheckOutController::class, 'nonStrtipeProductsCheckout'])->name('none-stripe')->middleware('admin');
+        Route::get('/none-stripe/guest', [CheckOutController::class, 'nonStrtipeProductsCheckoutGuest'])->name('none-stripe-guest');
+        Route::get('/enableCoupons', [CheckOutController::class, 'enableCoupons'])->name('enableCoupons')->middleware('admin');
+        Route::get('/success', [CheckOutController::class, 'success'])->name('success')->middleware('admin');
+        Route::get('/cancel', [CheckOutController::class, 'cancel'])->name('cancel')->middleware('admin');
+    });
+
+    // direct integration with stripe
+    Route::prefix('direct')->name('direct.')->group(function () {
+        // stripe products
+        Route::get('/payment-method', [PaymentMethodCheckoutController::class, 'index'])->name('payment-method')->middleware('admin');
+        Route::post('/payment-method/post', [PaymentMethodCheckoutController::class, 'post'])->name('payment-method.post')->middleware('admin');
+      
+    });
     Route::get('/testing', [TestingController::class, 'testing']);
+    Route::post('/automate', [AutomatedController::class, 'automate']);
+
+    // Route::get('/home', AdminHomeController::class)->name('home');
 
     require __DIR__ . '/adminAuth.php';
 });
