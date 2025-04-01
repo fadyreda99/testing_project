@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Cashier\Cashier;
@@ -24,5 +25,10 @@ class Course extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'course_orders', 'course_id', 'order_id');
+    }
+
+    public function scopeStripeCourses(Builder $query)
+    {
+        return $query->where('stripe_price_id', '!=', null);
     }
 }

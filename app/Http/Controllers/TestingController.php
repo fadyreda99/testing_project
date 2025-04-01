@@ -46,7 +46,10 @@ class TestingController extends Controller
         // $courses = Course::avg('price');
         // min and max
         // $courses = Course::min('price');
-        $courses = Course::max('price');
+        // $courses = Course::max('price');
+
+        // local scopes
+        $courses = Course::stripeCourses()->get();
         dd($courses);
     }
 }
