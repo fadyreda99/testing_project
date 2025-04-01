@@ -105,4 +105,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function rules(){
         return $this->belongsToMany(Rule::class);
     }
+
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

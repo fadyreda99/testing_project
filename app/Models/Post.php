@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['post', 'user_id'] ;
+    // protected $fillable = ['post', 'user_id'] ;
 
+    protected $guarded = [];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -18,5 +19,17 @@ class Post extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function likes(){
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function tags(){
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }

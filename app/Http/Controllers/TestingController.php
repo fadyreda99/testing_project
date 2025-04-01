@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Image;
 use App\Models\Phone;
+use App\Models\Post;
 use App\Models\Rule;
 use App\Models\Scopes\StripeCoursesScope;
+use App\Models\Tag;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class TestingController extends Controller
@@ -94,13 +98,56 @@ class TestingController extends Controller
         // $comments = $user->comments;
 
         // many to many 
-        $user = User::find(12);
-        $rules = $user->rules;
+        // $user = User::find(12);
+        // $rules = $user->rules;
 
-        $rule = Rule::find(1);
-        foreach ($rule->users  as $user) {
-            dump($user->pivot->created_at);
-        }
+        // $rule = Rule::find(1);
+        // foreach ($rule->users  as $user) {
+        //     dump($user->pivot->created_at);
+        // }
+
+
+        // polymorphic relations
+        // one to one
+        // $user = User::find(12);
+        // dd($user->image);
+        // $post = Post::find(21);
+        // dd($post->image);
+        // $image = Image::find(2);
+        // dd($image->imageable);
+
+        // $user = User::create([
+        //     'name' => 'test user',
+        //     'email' => 'test1@example',
+        //     'password' => '123456789',
+        // ]);
+        // $user->image()->create(['image_name' => 'test.jpg']);
+
+        // $post = Post::create([
+        //     'post_en' => 'test post',
+        //     'post_ar' => 'test post',
+        //     'user_id' => 12,
+        // ]);
+        // $post->image()->create(['image_name' => 'test.jpg']);
+
+        // one to many
+        // $post = Post::find(21);
+        // dd($post->likes);
+
+        // $video = Video::find(1);
+        // dd($video->likes);
+
+        // many to many 
+        // $post = Post::find(21);
+        // dd($post->tags);
+
+        // $video = Video::find(1);
+        // dd($video->tags);
+
+        $tag = Tag::find(2);
+        // $posts = $tag->posts;
+        $videos = $tag->videos;
+        dd( $videos);
         // dump($rule);
     }
 }
