@@ -54,8 +54,16 @@ class TestingController extends Controller
         // global scopes
         // $courses = Course::get();
         // removing global scopes 
-        $courses = Course::withoutGlobalScopes([StripeCoursesScope::class])->get();
+        // $courses = Course::withoutGlobalScopes([StripeCoursesScope::class])->get();
 
-        dd($courses);
+
+        // model events 
+        $course = Course::create([
+            'name' => 'test course',
+            'slug' => 'test-course2',
+            'description' => 'test course description',
+            'price' => 100,
+        ]);
+        dd($course);
     }
 }
