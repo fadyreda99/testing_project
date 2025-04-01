@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Scopes\StripeCoursesScope;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,9 @@ class TestingController extends Controller
         // local scopes
         // $courses = Course::stripeCourses()->get();
         // global scopes
-        $courses = Course::get();
+        // $courses = Course::get();
+        // removing global scopes 
+        $courses = Course::withoutGlobalScopes([StripeCoursesScope::class])->get();
 
         dd($courses);
     }
