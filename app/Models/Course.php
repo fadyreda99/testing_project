@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\StripeCoursesScope;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Cashier\Cashier;
 
+#[ScopedBy(StripeCoursesScope::class)]
 class Course extends Model
 {
     use HasFactory;

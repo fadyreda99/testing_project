@@ -49,7 +49,10 @@ class TestingController extends Controller
         // $courses = Course::max('price');
 
         // local scopes
-        $courses = Course::stripeCourses()->get();
+        // $courses = Course::stripeCourses()->get();
+        // global scopes
+        $courses = Course::get();
+
         dd($courses);
     }
 }
