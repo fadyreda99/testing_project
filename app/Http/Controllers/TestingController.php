@@ -58,12 +58,22 @@ class TestingController extends Controller
 
 
         // model events 
-        $course = Course::create([
-            'name' => 'test course',
-            'slug' => 'test-course2',
-            'description' => 'test course description',
-            'price' => 100,
-        ]);
-        dd($course);
+        // $course = Course::create([
+        //     'name' => 'test course',
+        //     'slug' => 'test-course2',
+        //     'description' => 'test course description',
+        //     'price' => 100,
+        // ]);
+
+        // mute model events
+        Course::withoutEvents(function () {
+            $course = Course::create([
+                'name' => 'test course',
+                'slug' => 'test-course3',
+                'description' => 'test course description',
+                'price' => 100,
+            ]);
+        });
+        // dd($course);
     }
 }
