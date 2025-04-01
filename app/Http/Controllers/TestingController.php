@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Phone;
+use App\Models\Rule;
 use App\Models\Scopes\StripeCoursesScope;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,14 +68,39 @@ class TestingController extends Controller
         // ]);
 
         // mute model events
-        Course::withoutEvents(function () {
-            $course = Course::create([
-                'name' => 'test course',
-                'slug' => 'test-course3',
-                'description' => 'test course description',
-                'price' => 100,
-            ]);
-        });
+        // Course::withoutEvents(function () {
+        //     $course = Course::create([
+        //         'name' => 'test course',
+        //         'slug' => 'test-course3',
+        //         'description' => 'test course description',
+        //         'price' => 100,
+        //     ]);
+        // });
         // dd($course);
+
+        // relations
+        // $phone = Phone::find(1);
+
+        // $users = User::whereIn('id', [12])->get();
+        // $phones = Phone::whereBelongsTo($users)->get();
+
+        // $user = User::find(12);
+
+        // has one through
+        // $user = User::find(12);
+        // $serial = $user->serial->serial;
+        // has many through
+        // $user = User::find(12);
+        // $comments = $user->comments;
+
+        // many to many 
+        $user = User::find(12);
+        $rules = $user->rules;
+
+        $rule = Rule::find(1);
+        foreach ($rule->users  as $user) {
+            dump($user->pivot->created_at);
+        }
+        // dump($rule);
     }
 }

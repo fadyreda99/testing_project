@@ -76,4 +76,33 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return [];
     }
+
+    // public function phones()
+    // {
+    //     return $this->hasMany(Phone::class);
+    // }
+    public function phone()
+    {
+        return $this->hasOne(Phone::class);
+    }
+
+    public function serial(){
+        return $this->hasOneThrough(Serial::class, Phone::class);
+    }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    public function latestPost(){
+        return $this->hasOne(Post::class)->latestOfMany();
+    }
+
+    public function comments(){
+        return $this->hasManyThrough(Comment::class, Post::class);
+    }
+
+    public function rules(){
+        return $this->belongsToMany(Rule::class);
+    }
 }
