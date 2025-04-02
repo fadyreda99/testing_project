@@ -18,26 +18,31 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function image(){
+    public function image()
+    {
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function likes(){
+    public function likes()
+    {
         return $this->morphMany(Like::class, 'likeable');
     }
 
-    public function tags(){
+    public function tags()
+    {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
     protected function PostEn(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => ucwords($value),
+            get: fn($value) => ucwords($value),
+            set: fn($value) => 'test ' . ucwords($value),
         );
     }
 }

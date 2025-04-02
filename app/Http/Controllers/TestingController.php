@@ -162,7 +162,11 @@ class TestingController extends Controller
         //     dd($user->rules()->pluck('rule_name')->toArray());
 
         return $posts = Post::get();
-
+    //    return    $post = Post::create([
+    //         'post_en' => 'test post',
+    //         'post_ar' => 'test post',
+    //         'user_id' => 12,
+    //     ]);
         // dump($rule);
     }
 }
