@@ -170,9 +170,25 @@ class TestingController extends Controller
     //     ]);
 
     // data serialization
-    $post= Post::find(21);
-    // dd($post->toArray());
-    dd($post->toJson());
+    // $post= Post::find(21);
+    // // dd($post->toArray());
+    // dd($post->toJson());
         // dump($rule);
+
+
+        // relational factories
+
+        // has many
+        // $user = User::factory()
+        // // ->has(Post::factory()->count(2))
+        // ->hasPosts(5)
+        // ->count(1)->create();
+
+        // belongs to
+        // $post = Post::factory()
+        // ->for(User::factory())
+        // ->count(1)->create();
+
+        
     }
 }
