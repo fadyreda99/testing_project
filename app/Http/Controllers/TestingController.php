@@ -144,10 +144,22 @@ class TestingController extends Controller
         // $video = Video::find(1);
         // dd($video->tags);
 
-        $tag = Tag::find(2);
+        // $tag = Tag::find(2);
         // $posts = $tag->posts;
-        $videos = $tag->videos;
-        dd( $videos);
+        // $videos = $tag->videos;
+
+        // associate & disassociate
+        // $post = Post::find(21);
+        // $post->user()->associate(User::find(4));
+        // $post->user()->disassociate();
+        // $post->save();
+
+        // attach & detach & sync
+        $user = User::find(12);
+        // $user->rules()->attach([1,2]);
+        // $user->rules()->detach();
+        $user->rules()->sync([2, 3, 4]);
+            dd($user->rules()->pluck('rule_name')->toArray());
         // dump($rule);
     }
 }

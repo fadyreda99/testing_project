@@ -10,6 +10,6 @@ class Rule extends Model
     use HasFactory;
 
     public function users(){
-        return $this->belongsToMany(User::class)->withPivot('user_id')->withTimestamps();
+        return $this->belongsToMany(User::class);
     }
 }
