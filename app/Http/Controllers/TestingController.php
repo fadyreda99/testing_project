@@ -155,11 +155,14 @@ class TestingController extends Controller
         // $post->save();
 
         // attach & detach & sync
-        $user = User::find(12);
-        // $user->rules()->attach([1,2]);
-        // $user->rules()->detach();
-        $user->rules()->sync([2, 3, 4]);
-            dd($user->rules()->pluck('rule_name')->toArray());
+        // $user = User::find(12);
+        // // $user->rules()->attach([1,2]);
+        // // $user->rules()->detach();
+        // $user->rules()->sync([2, 3, 4]);
+        //     dd($user->rules()->pluck('rule_name')->toArray());
+
+        return $posts = Post::get();
+
         // dump($rule);
     }
 }
