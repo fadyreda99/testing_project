@@ -38,6 +38,7 @@ class Post extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    // accessor & mutator
     protected function PostEn(): Attribute
     {
         return Attribute::make(

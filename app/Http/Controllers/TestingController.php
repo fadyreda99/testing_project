@@ -161,12 +161,18 @@ class TestingController extends Controller
         // $user->rules()->sync([2, 3, 4]);
         //     dd($user->rules()->pluck('rule_name')->toArray());
 
-        return $posts = Post::get();
+        //  $post= Post::find(21);
+
     //    return    $post = Post::create([
     //         'post_en' => 'test post',
     //         'post_ar' => 'test post',
     //         'user_id' => 12,
     //     ]);
+
+    // data serialization
+    $post= Post::find(21);
+    // dd($post->toArray());
+    dd($post->toJson());
         // dump($rule);
     }
 }
