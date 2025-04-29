@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AutomatedController;
 use App\Http\Controllers\Admin\Cart\CartController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Checkout\CheckOutController;
 use App\Http\Controllers\Admin\Checkout\PaymentMethodCheckoutController;
 use App\Http\Controllers\Admin\Courses\CoursesController;
@@ -93,6 +94,9 @@ require __DIR__ . '/auth.php';
 
 //admin
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::resource('categories', CategoryController::class)->middleware(['admin']);
+
     Route::get('/', AdminHomeController::class)->middleware('admin')->name('home');
     Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
     Route::resource('admins', \App\Http\Controllers\Admin\admins\AdminController::class);

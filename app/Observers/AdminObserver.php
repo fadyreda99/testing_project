@@ -13,7 +13,7 @@ class AdminObserver
     public function created(Admin $admin): void
     {
         $superAdmin = Admin::where('email', 'admin_super@admin.com')->first();
-        $superAdmin->notify(new CreatedNewAdmin($admin->getRoleNames()[0] ?? ''));
+        // $superAdmin->notify(new CreatedNewAdmin($admin->getRoleNames()[0] ?? ''))T;
 //        $admin->name = $admin->name . ' observerHandling';
 //        $admin->save();
     }
