@@ -59,4 +59,18 @@ class CategoriesRetrievingTest extends TestCase
             return $categories->count() === 5;
         });
     }
+
+    public function test_check_if_categroies_show_page_contain_right_data(): void
+    {
+        $category = Category::factory()->create();
+
+        $response = $this->get(route('admin.categories.show', $category));
+
+        $response->assertStatus(200)
+            ->assertViewIs('admin.categories.show')
+            ->assertViewHas('category', $category)
+            ->assertSeeText($category->name)
+            ->assertSeeText($category->description)
+            ->assertSee('categories');
+    }
 }
