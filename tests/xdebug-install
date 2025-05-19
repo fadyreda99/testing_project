@@ -1,0 +1,13 @@
+// download xdebug from the website "https://xdebug.org/download#releases" depend on your PHP version
+// move the downloaded file to the ext directory of your PHP installation and rename it to "xdebug.dll"
+// add the following lines to your php.ini file (adjust the path as needed):
+
+// zend_extension="C:/php/ext/php_xdebug-3.4.1.dll" ; add xdeug extension path here
+// xdebug.mode=debug,coverage
+// xdebug.start_with_request=yes
+// xdebug.client_host=127.0.0.1
+// xdebug.client_port=9003
+
+// restart your server as needed "laragon "
+// check if xdebug is installed by running the following command in your terminal
+// php -v
