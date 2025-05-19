@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\RobinHoodController;
 use App\Http\Controllers\Api\SocialController;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +33,9 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
-
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('categories', CategoriesController::class);
+});
 Route::get('auth/google', [SocialController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback']);
 
